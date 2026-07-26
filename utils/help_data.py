@@ -143,10 +143,10 @@ HELP_CATEGORIES = {
                 `lock`,`unlock`,`slowmode`,`hide`,`unhide`,`rename`,`topic`,`channelcreate`,`channeldelete`,`vccreate`,`vcdelete`,`nsfw`,`nuke`,`categorycreate`,`categrydelete`,`clone`,`stckymsg #channel <msg>`,`unsticky #channel`,`stickylist`,`snipe`,`editsnipe`,`purge`\n"""
             },
             {
-                "type" : "separotor"
+                "type" : "separator"
             },
             {
-                "type" : "text"
+                "type" : "text",
                 "content" : """### Welcomer\n
                 `welcomer enable/disable`,`welcomestatus`,`welcomechannel #channel`,`welcomemessage <text>`,`welcomedm on/off`,`welcometest`,`autorole add/remove/list`"""
             }
