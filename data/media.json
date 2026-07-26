@@ -1,0 +1,84 @@
+{
+    "1440967657250750576": {
+        "enabled": true,
+        "channels": [
+            1440967658810900541
+        ],
+        "bypass_roles": []
+    },
+    "1442794608168800317": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1240621757384101910": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1459571988073939086": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1200778942274076763": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1418316985464524932": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1431495227717455932": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1441638014831955990": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1510233312340344952": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1126413930105950279": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1395945023375413288": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1135816865055256688": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1413221277497557066": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1530788951428698162": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1482787205318447297": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    },
+    "1530941704314814745": {
+        "enabled": false,
+        "channels": [],
+        "bypass_roles": []
+    }
+}
