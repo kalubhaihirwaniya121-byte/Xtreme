@@ -16,7 +16,7 @@ HELP_CATEGORIES = {
             {
                 "type": "text",
                 "content": """### Automod\n
-                `automod`, `automod enable`, `automod disable`, `automod punishment`,`automod antilink enable`, `automod antilink disable`, `automod spam enable`, `automod spam disable`,`automod maxmentions`,`automod bypass`,`automod bypass add`,`automod bypass remove`,`automod bypass list`,`badwords`,`badwords add`,`badwords remove`,`badwords list`\n"""
+                `automod`, `automod enable`, `automod disable`, `automod punishment`,`automod antilinks enable`, `automod antilinks disable`, `automod spam enable`, `automod spam disable`,`automod invites enable/disable`,`automod maxmentions`,`automod bypass`,`automod bypass add`,`automod bypass remove`,`automod bypass list`,`badwords`,`badwords add`,`badwords remove`,`badwords list`\n"""
             },
             {
                 "type": "separator"
@@ -141,6 +141,14 @@ HELP_CATEGORIES = {
                 "type" : "text",
                 "content" : """### Channel Management\n
                 `lock`,`unlock`,`slowmode`,`hide`,`unhide`,`rename`,`topic`,`channelcreate`,`channeldelete`,`vccreate`,`vcdelete`,`nsfw`,`nuke`,`categorycreate`,`categrydelete`,`clone`,`stckymsg #channel <msg>`,`unsticky #channel`,`stickylist`,`snipe`,`editsnipe`,`purge`\n"""
+            },
+            {
+                "type" : "separotor"
+            },
+            {
+                "type" : "text"
+                "content" : """### Welcomer\n
+                `welcomer enable/disable`,`welcomestatus`,`welcomechannel #channel`,`welcomemessage <text>`,`welcomedm on/off`,`welcometest`,`autorole add/remove/list`"""
             }
         ]
     },
