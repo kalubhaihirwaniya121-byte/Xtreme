@@ -73,18 +73,30 @@ def build_embed_from_data(embed_data: Dict[str, Any], extra: Optional[Dict[str, 
         embed.set_thumbnail(url=data["thumbnail_url"])
     if data.get("image_url"):
         embed.set_image(url=data["image_url"])
-    if data.get("author_name") or data.get("author_url") or data.get("author_icon_url"):
-        embed.set_author(name=data.get("author_name") or discord.Embed.Empty, url=data.get("author_url"), icon_url=data.get("author_icon_url"))
-    if data.get("footer_text") or data.get("footer_icon_url"):
-        embed.set_footer(text=data.get("footer_text") or discord.Embed.Empty, icon_url=data.get("footer_icon_url"))
+    if data.get("author_name"):
+        embed.set_author(
+            name=str(data["author_name"]),
+            url=data.get("author_url"),
+            icon_url=data.get("author_icon_url")
+        )
+    if data.get("footer_text"):
+        embed.set_footer(
+            text=str(data["footer_text"]),
+            icon_url=data.get("footer_icon_url")
+        )
     if data.get("timestamp_enabled"):
         embed.timestamp = discord.utils.utcnow()
 
     for field in data.get("fields", []) or []:
-        name = field.get("name") or discord.Embed.Empty
-        value = field.get("value") or discord.Embed.Empty
+        name = str(field.get("name") or "\u200b")
+        value = str(field.get("value") or "\u200b")
         inline = bool(field.get("inline", False))
-        embed.add_field(name=name, value=value, inline=inline)
+
+        embed.add_field(
+            name=name,
+            value=value,
+            inline=inline
+        )
 
     if embed.is_empty():
         embed.description = "\u200b"
@@ -224,7 +236,7 @@ class ContentModal(discord.ui.Modal, title="Embed Content"):
         self.embed_name = embed_name
         self.parent_view = parent_view
         self.title = discord.ui.TextInput(label="Title", required=False, max_length=256)
-        self.description = discord.ui.TextInput(label="Description", required=False, style=discord.TextStyle.paragraph, max_length=4000)
+        self.description = discord.ui.TextInput(label="Description", required=False, style=discord.TextStyle.paragraph, max_length=4096)
         self.add_item(self.title)
         self.add_item(self.description)
 
@@ -397,7 +409,13 @@ class EmbedEditorView(discord.ui.View):
             return
         preview = await self.controller.render_embed_for_context(
             data,
-            author=self.message.guild and self.message.guild.me or None,
+            channel=None,
+            channel=None,
+            author=(
+                self.message.guild.get_member(self.owner_id)
+                if self.message.guild
+                else None
+            ),
             guild=self.message.guild,
             channel=None,
             bot_user=self.message.client.user,
