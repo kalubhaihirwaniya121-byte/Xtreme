@@ -162,7 +162,9 @@ INITIAL_COGS = [
     
     "cogs.setuprole",
     
-    "cogs.help"
+    "cogs.help",
+    
+    "cogs.embed"
     
 ]
 
