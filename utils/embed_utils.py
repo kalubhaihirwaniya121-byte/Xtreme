@@ -409,15 +409,13 @@ class EmbedEditorView(discord.ui.View):
             return
         preview = await self.controller.render_embed_for_context(
             data,
-            channel=None,
-            channel=None,
             author=(
                 self.message.guild.get_member(self.owner_id)
                 if self.message.guild
                 else None
             ),
             guild=self.message.guild,
-            channel=None,
+            channel=self.message.channel,
             bot_user=self.message.client.user,
         )
         try:
