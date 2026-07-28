@@ -1,0 +1,64 @@
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ==========================
+# Virtual Environment
+# ==========================
+venv/
+.venv/
+env/
+
+# ==========================
+# Environment Variables
+# ==========================
+.env
+
+# ==========================
+# Cache
+# ==========================
+.cache/
+.local/
+
+# ==========================
+# IDE / Editor
+# ==========================
+.vscode/
+.idea/
+
+# ==========================
+# OS Files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Logs
+# ==========================
+logs/
+*.log
+data/logs/
+data/backups/
+
+# ==========================
+# Databases
+# ==========================
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# ==========================
+# Runtime Data
+# ==========================
+data/*
+
+# Keep static data files
+!data/action_owner.json
+!data/truth.json
+!data/dare.json
