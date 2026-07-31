@@ -1062,3 +1062,28 @@ class EmbedEditorView(discord.ui.View):
     ) -> None:
         await self.controller.toggle_timestamp(self.guild_id, self.embed_name)
         await self.refresh_preview(interaction)
+
+    @discord.ui.button(label="Clear Fields", style=discord.ButtonStyle.danger, row=3)
+    async def btn_clear_fields(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button,
+    ) -> None:
+        for field in list(self.fields):
+            await self.controller.remove_field(
+                self.guild_id,
+                self.embed_id,
+                field["id"],
+            )
+        self.selected_field_id = None
+        await self.refresh_preview(interaction)
+
+    @discord.ui.button(label="Finish", style=discord.ButtonStyle.success, row=3)
+    async def btn_finish(
+        self,
+        interaction: discord.Interaction,
+        button: discord.ui.Button,
+    ) -> None:
+        self.disable_items()
+        await interaction.response.edit_message(view=self)
+        self.stop()
