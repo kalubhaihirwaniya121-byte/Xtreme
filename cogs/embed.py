@@ -613,6 +613,7 @@ class EmbedCog(commands.Cog):
             return await ctx.send(f"{Emojis.CROSS} Embed not found.")
         view = embed_utils.ConfirmView(owner_id=ctx.author.id)
         message = await ctx.send(f"Delete embed \"{normalize_name(name)}\"?", view=view)
+        view.message = message
         await view.wait()
         if view.value is True:
             await self.delete_embed(ctx.guild.id, normalize_name(name))

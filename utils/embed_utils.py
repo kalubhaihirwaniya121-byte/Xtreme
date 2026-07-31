@@ -139,6 +139,7 @@ class ConfirmView(discord.ui.View):
         super().__init__(timeout=60)
         self.owner_id = owner_id
         self.value: Optional[bool] = None
+        self.message: Optional[discord.Message] = None
 
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         if interaction.user.id != self.owner_id:
@@ -146,21 +147,32 @@ class ConfirmView(discord.ui.View):
             return False
         return True
 
+def disable_items(self):
+    for item in self.children:
+        item.disabled = True
+        
     async def on_timeout(self) -> None:
-        self.disable_all_items()
+        self.disable_items()
+    
+        if self.message:
+            try:
+                await self.message.edit(view=self)
+            except discord.HTTPException:
+                pass
+    
         self.stop()
 
     @discord.ui.button(label="Confirm", style=discord.ButtonStyle.green)
     async def confirm(self, interaction: discord.Interaction, button: discord.ui.Button) -> None:
         self.value = True
-        self.disable_all_items()
+        self.disable_items()
         self.stop()
         await interaction.response.defer()
 
     @discord.ui.button(label="Cancel", style=discord.ButtonStyle.red)
     async def cancel(self, interaction: discord.Interaction, button: discord.ui.Button) -> None:
         self.value = False
-        self.disable_all_items()
+        self.disable_items()
         self.stop()
         await interaction.response.defer()
 
