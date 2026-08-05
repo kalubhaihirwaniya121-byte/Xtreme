@@ -499,15 +499,15 @@ class Relationship(commands.Cog):
             "partner"
         ]
 
-            partner = self.bot.get_user(
-                partner_id
-            )
+        partner = self.bot.get_user(
+            partner_id
+        )
 
-            if partner is None:
-                try:
-                    partner = await self.bot.fetch_user(partner_id)
-                except Exception:
-                    partner = None
+        if partner is None:
+            try:
+                partner = await self.bot.fetch_user(partner_id)
+            except Exception:
+                partner = None
 
         embed = discord.Embed(
 
@@ -849,11 +849,11 @@ class Relationship(commands.Cog):
             data["partner"]
         )
 
-            if partner is None:
-                try:
-                    partner = await self.bot.fetch_user(data["partner"])
-                except Exception:
-                    partner = None
+        if partner is None:
+            try:
+                partner = await self.bot.fetch_user(data["partner"])
+            except Exception:
+                partner = None
 
         children = []
 
