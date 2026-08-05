@@ -14,7 +14,7 @@ class ShipView(View):
         user2: discord.Member,
         ship_callback
     ):
-        super().__init__(timeout=180)
+        super().__init__(timeout=None)
 
         self.bot = bot
 
@@ -27,7 +27,8 @@ class ShipView(View):
     @discord.ui.button(
         label="Random",
         emoji="🎲",
-        style=discord.ButtonStyle.secondary
+        style=discord.ButtonStyle.secondary,
+        custom_id="ship_random_btn"
     )
     async def random_ship(
         self,
@@ -57,13 +58,15 @@ class ShipView(View):
             interaction,
             user,
             partner,
-            self
+            self,
+            "random"
         )
         
     @discord.ui.button(
         label="Love",
         emoji="❤️",
-        style=discord.ButtonStyle.success
+        style=discord.ButtonStyle.success,
+        custom_id="ship_love_btn"
     )
     async def love(
         self,
@@ -81,7 +84,8 @@ class ShipView(View):
     @discord.ui.button(
         label="Hate",
         emoji="💔",
-        style=discord.ButtonStyle.danger
+        style=discord.ButtonStyle.danger,
+        custom_id="ship_hate_btn"
     )
     async def hate(
         self,

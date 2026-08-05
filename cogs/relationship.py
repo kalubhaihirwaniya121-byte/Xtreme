@@ -332,6 +332,12 @@ class Relationship(commands.Cog):
             data["partner"]
         )
 
+        if partner is None:
+            try:
+                partner = await self.bot.fetch_user(data["partner"])
+            except Exception:
+                partner = None
+
         embed = discord.Embed(
 
             title="❤️ Partner",
@@ -402,6 +408,12 @@ class Relationship(commands.Cog):
         partner = self.bot.get_user(
             data["partner"]
         )
+
+        if partner is None:
+            try:
+                partner = await self.bot.fetch_user(data["partner"])
+            except Exception:
+                partner = None
 
         embed = discord.Embed(
 
@@ -487,9 +499,15 @@ class Relationship(commands.Cog):
             "partner"
         ]
 
-        partner = self.bot.get_user(
-            partner_id
-        )
+            partner = self.bot.get_user(
+                partner_id
+            )
+
+            if partner is None:
+                try:
+                    partner = await self.bot.fetch_user(partner_id)
+                except Exception:
+                    partner = None
 
         embed = discord.Embed(
 
@@ -667,31 +685,51 @@ class Relationship(commands.Cog):
         elif mode == "hate":
             current = random.randint(1, 100)
             percentage = max(1, current - random.randint(5, 15))
-            
-        view.user1 = user1
-        view.user2 = user2
-        
+        # Ensure we have proper User/User-like objects for mentions
+        user1_obj = user1
+        user2_obj = user2
+
+        user1_id = getattr(user1, "id", None)
+        if user1_id:
+            user1_obj = self.bot.get_user(user1_id) or None
+            if user1_obj is None:
+                try:
+                    user1_obj = await self.bot.fetch_user(user1_id)
+                except Exception:
+                    user1_obj = user1
+
+        user2_id = getattr(user2, "id", None)
+        if user2_id:
+            user2_obj = self.bot.get_user(user2_id) or None
+            if user2_obj is None:
+                try:
+                    user2_obj = await self.bot.fetch_user(user2_id)
+                except Exception:
+                    user2_obj = user2
+
+        view.user1 = user1_obj
+        view.user2 = user2_obj
+
+        name1 = getattr(user1_obj, "display_name", None) or getattr(user1_obj, "name", str(user1_obj))
+        name2 = getattr(user2_obj, "display_name", None) or getattr(user2_obj, "name", str(user2_obj))
+
         ship_name = (
-            user1.display_name[:len(user1.display_name)//2]
-            +
-            user2.display_name[len(user2.display_name)//2:]
+            name1[: len(name1) // 2] + name2[len(name2) // 2 :]
         )
 
         embed = discord.Embed(
             title="💘 Ship",
             description=(
-                f"{user1.mention} ❤️ {user2.mention}\n\n"
+                f"{getattr(user1_obj, 'mention', str(user1_obj))} ❤️ {getattr(user2_obj, 'mention', str(user2_obj))}\n\n"
                 f"Compatibility: **{percentage}%**\n"
                 f"Ship Name: **{ship_name}**"
             ),
-            color=discord.Color.random()
+            color=discord.Color.random(),
         )
 
-        embed.set_footer(
-            text="Love is in the air ❤️"
-        )
+        embed.set_footer(text="Love is in the air ❤️")
 
-        await interaction.response.edit_message(
+        await interaction.response.send_message(
             embed=embed,
             view=view
         )
@@ -810,6 +848,12 @@ class Relationship(commands.Cog):
         partner = self.bot.get_user(
             data["partner"]
         )
+
+            if partner is None:
+                try:
+                    partner = await self.bot.fetch_user(data["partner"])
+                except Exception:
+                    partner = None
 
         children = []
 
